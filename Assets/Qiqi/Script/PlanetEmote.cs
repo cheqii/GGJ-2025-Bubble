@@ -25,6 +25,7 @@ public class PlanetEmote : MonoBehaviour
     [SerializeField] private List<SpriteAndEmotion> emotions = new List<SpriteAndEmotion>();
     
     #endregion
+    
 
     private void Update()
     {
@@ -41,6 +42,12 @@ public class PlanetEmote : MonoBehaviour
         {
             ChangeEmote(PlanetEmotions.Sad);
         }
+
+        /*if (!onPlayer)
+        {
+            transform.Rotate(0, 0, 10 * Time.deltaTime);
+        }*/
+        
     }
 
     public void ChangeEmote(PlanetEmotions _emote)
@@ -51,4 +58,5 @@ public class PlanetEmote : MonoBehaviour
         faceSpriteRenderer.sprite = emotions[(int) _emote].DefaultFaceSprite;
         faceAnimator.runtimeAnimatorController = emotions[(int) _emote].FaceAnimation;
     }
+    
 }
