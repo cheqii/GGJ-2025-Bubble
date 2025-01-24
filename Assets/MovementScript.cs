@@ -10,11 +10,12 @@ public class MovementScript : MonoBehaviour
     public float moveSpeed = 3f;
     private bool isGrounded;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private CircleCollider2D collider;
     private float playerHalfHeight;
     private float boundary = 0.0f;
 
     void Start(){
-        playerHalfHeight = spriteRenderer.bounds.extents.y; 
+        playerHalfHeight = collider.bounds.extents.y; 
     }
 
     void Update()
@@ -28,7 +29,6 @@ public class MovementScript : MonoBehaviour
         if (!GetIsGrounded())
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(mousePosition.x);
             if (mousePosition.x > transform.position.x + boundary)
             {
                 rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
