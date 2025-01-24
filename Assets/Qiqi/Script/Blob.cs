@@ -21,15 +21,15 @@ public class Blob : MonoBehaviour
 
     void Start()
     {
-        CreateReferencePoints();
-        CreateMesh();
-        MapVerticesToReferencePoints();
+        // CreateReferencePoints();
+        // CreateMesh();
+        // MapVerticesToReferencePoints();
 
     }
 
 
 
-    void CreateReferencePoints()
+    public void CreateReferencePoints()
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         referencePoints = new GameObject[referencePointsCount];
@@ -76,7 +76,7 @@ public class Blob : MonoBehaviour
         IgnoreCollisionsBetweenReferencePoints();
     }
 
-    void AttachWithSpringJoint(GameObject referencePoint,
+    public void AttachWithSpringJoint(GameObject referencePoint,
             GameObject connected)
     {
         SpringJoint2D springJoint =
@@ -89,7 +89,7 @@ public class Blob : MonoBehaviour
         springJoint.frequency = springFrequency;
     }
 
-    void IgnoreCollisionsBetweenReferencePoints()
+    public void IgnoreCollisionsBetweenReferencePoints()
     {
         int i;
         int j;
@@ -107,7 +107,7 @@ public class Blob : MonoBehaviour
         }
     }
 
-    void CreateMesh()
+    public void CreateMesh()
     {
         vertexCount = (width + 1) * (height + 1);
 
@@ -146,7 +146,7 @@ public class Blob : MonoBehaviour
         mesh.triangles = triangles;
     }
 
-    void MapVerticesToReferencePoints()
+    public void MapVerticesToReferencePoints()
     {
         offsets = new Vector3[vertexCount, referencePointsCount];
         weights = new float[vertexCount, referencePointsCount];
@@ -175,8 +175,9 @@ public class Blob : MonoBehaviour
         UpdateVertexPositions();
     }
 
-    void UpdateVertexPositions()
+    private void UpdateVertexPositions()
     {
+        if(vertexCount <= 0) return;
         Vector3[] vertices = new Vector3[vertexCount];
 
         for (int i = 0; i < vertexCount; i++)
@@ -195,7 +196,7 @@ public class Blob : MonoBehaviour
         mesh.RecalculateBounds();
     }
 
-    Vector3 LocalPosition(GameObject obj)
+    private Vector3 LocalPosition(GameObject obj)
     {
         return transform.InverseTransformPoint(obj.transform.position);
     }
