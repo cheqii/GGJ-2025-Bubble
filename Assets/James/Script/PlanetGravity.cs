@@ -12,6 +12,7 @@ public class PlanetGravity : MonoBehaviour
     public float gravityRadius = 10;
     public List<Collider2D> attractedObject = new List<Collider2D>();
     [HideInInspector] public Transform planetTransform;
+    public bool onPlayer;
 
     private void Awake()
     {
@@ -21,6 +22,11 @@ public class PlanetGravity : MonoBehaviour
     private void Update()
     {
         SetAttractedObject();
+        if (!onPlayer)
+        {
+            transform.Rotate(0, 0, 10 * Time.deltaTime);
+        }
+        
     }
 
     private void FixedUpdate()
@@ -48,5 +54,21 @@ public class PlanetGravity : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position,gravityRadius);
+        Gizmos.DrawRay(transform.position,Vector3.up * 5);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            onPlayer = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            onPlayer = false;
+        }
     }
 }
