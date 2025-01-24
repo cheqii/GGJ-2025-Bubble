@@ -7,9 +7,6 @@ using UnityEngine;
 public class Attractable : MonoBehaviour
 {
     [Header("Ground Check")]
-    public LayerMask groundLayer;
-    public Transform groundCheckPoint;
-    public float groundCheckRange = 1;
     public bool onGround = false;
     [Header("Gravity Check")]
     public PlanetGravity currentPlanet;
@@ -27,8 +24,7 @@ public class Attractable : MonoBehaviour
 
     private void Update()
     {
-
-        onGround = Physics2D.Raycast(groundCheckPoint.position, Vector2.down,groundCheckRange, groundLayer);
+        
         if (currentPlanet != null)
         {
             if (!currentPlanet.attractedObject.Contains(_collider2D))
@@ -43,7 +39,15 @@ public class Attractable : MonoBehaviour
 
             if (onGround)
             {
-                _rigidbody2D.velocity = Vector2.zero;
+                if (_rigidbody2D.velocity != Vector2.zero)
+                {
+                    _rigidbody2D.velocity = Vector2.MoveTowards(_rigidbody2D.velocity, Vector2.zero, 10f);
+                }
+                else
+                {
+                    _rigidbody2D.velocity = Vector2.zero;
+                }
+                
             }
             
             
@@ -67,10 +71,12 @@ public class Attractable : MonoBehaviour
             currentPlanet = planetGravity;
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(groundCheckPoint.position,Vector2.down * groundCheckRange);
-    }
     
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
+    }
 }

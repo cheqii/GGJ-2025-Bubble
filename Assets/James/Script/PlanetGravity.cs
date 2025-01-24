@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using James;
 using UnityEngine;
 
 public class PlanetGravity : MonoBehaviour
@@ -36,6 +37,10 @@ public class PlanetGravity : MonoBehaviour
     {
         foreach (Collider2D attractable in attractedObject)
         {
+            if (attractable.GetComponent<TestPlayerMovement>().playerState == PlayerState.OnJump)
+            {
+                return;
+            }
             attractable.GetComponent<Attractable>().Attract(this);
         }
     }
