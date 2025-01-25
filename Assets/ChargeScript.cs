@@ -24,9 +24,13 @@ public class ChargeScript : MonoBehaviour
     }
 
     public void Charging(){
-        spriterRenderer.transform.localScale += scaleChange;
+        
         jumpCharge += Time.deltaTime / chargeTime * (maxJumpForce - jumpForce);
         jumpCharge = Mathf.Clamp(jumpCharge, 0f, maxJumpForce - jumpForce);
+        if (jumpCharge < maxJumpForce)
+        {
+            spriterRenderer.transform.localScale += scaleChange;
+        }
     }
 
     public void Jump(){

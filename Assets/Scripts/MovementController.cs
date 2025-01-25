@@ -15,6 +15,7 @@ public class MovementController : MonoBehaviour
 
     public Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider;
+    public bool onGround;
 
     void Start(){
         playerHalfHeight = collider.bounds.extents.y; 
@@ -48,7 +49,15 @@ public class MovementController : MonoBehaviour
     }
 
     private bool GetIsGrounded(){
-        return Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, LayerMask.GetMask("Attractable"));
+        return Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, LayerMask.GetMask("Ground"));
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
     }
 
 
