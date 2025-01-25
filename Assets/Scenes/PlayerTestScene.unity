@@ -329,17 +329,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Jump
-    clip: {fileID: 8300000, guid: 815f29c9e554b6c80ba112a194825744, type: 3}
+  - name: BGM
+    clip: {fileID: 8300000, guid: 395ad9e415d92c93294aad19754c5ae4, type: 3}
     volume: 1
     pitch: 1
     isPlayed: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 5fbda40d34b70fc559f4d25103e613da, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
     source: {fileID: 0}
   - name: Charge
     clip: {fileID: 8300000, guid: 095beeca172cf9ed885683490dba22c2, type: 3}
     volume: 1
     pitch: 1
     isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 10d5e508e9abd3df1ba1b0ec68b065ee, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Drop
+    clip: {fileID: 8300000, guid: dd6eb590d8270a71493ddff5b058aec8, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
     source: {fileID: 0}
 --- !u!1 &784945023
 GameObject:
@@ -589,7 +612,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

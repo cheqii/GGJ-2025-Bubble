@@ -30,6 +30,7 @@ public class AttackingScript : MonoBehaviour
             yield return new WaitForSeconds(countdownValue);
             currCountdownValue--;
         }
+        FindObjectOfType<AudioManager>().Reset("Hit");
         gameObject.SetActive(false);
     }
 }
