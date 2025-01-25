@@ -25,7 +25,6 @@ public class MovementController : MonoBehaviour
     void Update(){
         switch (currentState){
             case State.Grounded:
-                FindObjectOfType<AudioManager>().Reset("Jump");
                 if (Input.GetButtonDown("Jump")){
                     gameObject.GetComponent<ChargeScript>().StartCharging();
                     currentState = State.Charging;
@@ -33,9 +32,12 @@ public class MovementController : MonoBehaviour
                 else if (Input.GetButtonDown("Fire1")){
                     currentState = State.Attacking;
                 }
+                FindObjectOfType<AudioManager>().Play("Drop");
+                FindObjectOfType<AudioManager>().Reset("Jump");
                 
                 break;
             case State.Jumping:
+                FindObjectOfType<AudioManager>().Reset("Drop");
                 if (GetIsGrounded()){
                     currentState = State.Grounded;
                 }
@@ -53,6 +55,7 @@ public class MovementController : MonoBehaviour
                 }
                 break;
             case State.Attacking:
+                FindObjectOfType<AudioManager>().Play("Hit");
                 this.gameObject.transform.GetChild(0).GetComponent<AttackingScript>().Attacking();
                 currentState = State.Grounded;
                 break;
