@@ -5,6 +5,7 @@ using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Planet : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Planet : MonoBehaviour
     [Header("Player")]
     [SerializeField] private MovementController player;
 
+    [SerializeField] private Collider2D planetCentralCol;
+    
     [SerializeField] private MMF_Player hurtFeedback;
     
     private void Start()
@@ -48,6 +51,7 @@ public class Planet : MonoBehaviour
         #endregion
 
         player.PlanetTakeDamage += TakeDamage;
+        player.RotatePlanet += RotatePlanet;
 
     }
 
@@ -58,13 +62,29 @@ public class Planet : MonoBehaviour
 
     private void TakeDamage()
     {
-        if (player.currentState == MovementController.State.Jumping)
-        {
-            var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
-            var _jumpDamage = _chargeScript.jumpForce * _chargeScript.JumpCharge;
-            currentHealth -= (int) _jumpDamage;
+        // if (!player.GetIsGrounded()) return;
+        var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
+        var _jumpDamage = _chargeScript.startJumpForce * _chargeScript.JumpCharge;
+        currentHealth -= (int) _jumpDamage;
             
-            // hurtFeedback.PlayFeedbacks();
-        }
+        Material _material = GetComponent<MeshRenderer>().material;
+        var _matTween = _material.DOColor(Color.red, 0.25f);
+        _matTween.OnComplete(() =>
+        {
+            _material.DOColor(Color.white, 0.25f);
+        });
+        
+        // hurtFeedback.PlayFeedbacks();
+    }
+    
+    private void RotatePlanet()
+    {
+        var _zRotateValue = player.GetComponent<ChargeScript>().JumpCharge;
+        planetCentralCol.isTrigger = false;
+        var _rotateTween = transform.DORotate(new Vector3(0, 0, gameObject.transform.localRotation.eulerAngles.z +  _zRotateValue), 0.25f, RotateMode.FastBeyond360);
+        _rotateTween.OnComplete(() =>
+        {
+            planetCentralCol.isTrigger = true;
+        });
     }
 }

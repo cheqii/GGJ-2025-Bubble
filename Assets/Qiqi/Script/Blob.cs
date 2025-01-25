@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Blob : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class Blob : MonoBehaviour
             body.interpolation = rigidbody.interpolation;
             body.collisionDetectionMode = rigidbody.collisionDetectionMode;
             allReferencePoints[i] = body;
+            body.constraints = RigidbodyConstraints2D.FreezeRotation;
 
 
             CircleCollider2D collider =
@@ -189,6 +191,7 @@ public class Blob : MonoBehaviour
             {
                 vertices[i] += weights[i, j] *
                     (LocalPosition(referencePoints[j]) + offsets[i, j]);
+                
             }
         }
 
