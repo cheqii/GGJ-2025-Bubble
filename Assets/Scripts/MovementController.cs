@@ -23,6 +23,7 @@ public class MovementController : MonoBehaviour
     }
     
     void Update(){
+        FindObjectOfType<AudioManager>().Play("Jump");
         switch (currentState){
             case State.Grounded:
                 if (Input.GetButtonDown("Jump")){
