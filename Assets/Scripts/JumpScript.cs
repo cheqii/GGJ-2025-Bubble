@@ -12,7 +12,8 @@ public class JumpScript : MonoBehaviour
 
     public bool isJumping()
     {
-        if (Input.GetButtonDown("Jump")){
+        if (Input.GetButtonDown("Jump") && GetComponent<MovementController>().GetIsGrounded())
+        {
             return true;
         }
         return false;

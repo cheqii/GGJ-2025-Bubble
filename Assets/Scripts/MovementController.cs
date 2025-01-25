@@ -63,13 +63,6 @@ public class MovementController : MonoBehaviour
         return Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, groundLayer);
     }
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Ground"))
-        {
-            onGround = true;
-        }
-    }
 
 
 }

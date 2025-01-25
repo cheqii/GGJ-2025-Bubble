@@ -7,7 +7,7 @@ public class ChargeScript : MonoBehaviour
     
     public MovementController movementController;
     [SerializeField] private SpriteRenderer spriterRenderer;
-    public float jumpForce = 5f;
+    public float startJumpForce = 5f;
     public float maxJumpForce;
     private float chargeTime = 0.5f;
     [SerializeField] private float jumpCharge;
@@ -21,13 +21,13 @@ public class ChargeScript : MonoBehaviour
 
 
     public void StartCharging(){
-        jumpCharge = 0f;
+        jumpCharge = startJumpForce;
     }
 
     public void Charging(){
         
-        jumpCharge += Time.deltaTime / chargeTime * (maxJumpForce - jumpForce);
-        jumpCharge = Mathf.Clamp(jumpCharge, 0f, maxJumpForce - jumpForce);
+        jumpCharge += Time.deltaTime / chargeTime * maxJumpForce;
+        jumpCharge = Mathf.Clamp(jumpCharge, 0f, maxJumpForce);
         if (jumpCharge < maxJumpForce)
         {
             spriterRenderer.transform.localScale += scaleChange;
@@ -35,7 +35,7 @@ public class ChargeScript : MonoBehaviour
     }
 
     public void Jump(){
-        movementController.rb.velocity = new Vector2(movementController.rb.velocity.x, jumpForce + jumpCharge);
+        movementController.rb.velocity = new Vector2(movementController.rb.velocity.x, jumpCharge);
         spriterRenderer.transform.localScale = Vector3.one;
     }
 

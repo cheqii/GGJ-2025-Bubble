@@ -9,6 +9,7 @@ namespace James
     public enum PlayerState
     {
         OnGround,
+        OnPrepareJump,
         OnJump,
     }
 
@@ -17,13 +18,19 @@ namespace James
         Left,
         Right,
     }
-    [RequireComponent(typeof(Attractable))]
     public class TestPlayerMovement : MonoBehaviour
     {
         [Header("Player Setting")]
         public PlayerState playerState;
         public JumpSide jumpSide;
-        public float jumpForce;
+
+        [Header("Jump Setting")] 
+        public float chargeTime = 0.5f;
+        public float minJumpForce = 5f;
+        public float maxJumpForce = 10f;
+        public Vector3 scaleChange = new Vector3(0f, -0.01f, 0f);
+        public SpriteRenderer spriteRenderer;
+        private float jumpForce;
         
         [Header("HideInspector")]
         private Rigidbody2D rb;
@@ -32,6 +39,10 @@ namespace James
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            if (spriteRenderer == null)
+            {
+                spriteRenderer = GetComponent<SpriteRenderer>();
+            }
         }
 
         private void Update()
@@ -43,19 +54,38 @@ namespace James
         {
             if (Input.GetKeyDown(KeyCode.Space) && playerState == PlayerState.OnGround)
             {
-                playerState = PlayerState.OnJump;
+                playerState = PlayerState.OnPrepareJump;
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (mousePos.x < transform.position.x)
                 {
                     jumpSide = JumpSide.Left;
-                    rb.velocity = new Vector2(rb.velocity.x , jumpForce);
                 }
                 else if (mousePos.x > transform.position.x)
                 {
                     jumpSide = JumpSide.Right;
-                    rb.velocity = new Vector2(rb.velocity.x , jumpForce);
                 }
-                
+                jumpForce = minJumpForce;
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                jumpForce += Time.deltaTime / chargeTime * maxJumpForce;;
+                if (jumpForce < maxJumpForce)
+                {
+                    spriteRenderer.transform.localScale += scaleChange;
+                }
+                if (jumpForce > maxJumpForce)
+                {
+                    jumpForce = maxJumpForce;
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) && playerState == PlayerState.OnPrepareJump)
+            {
+                playerState = PlayerState.OnJump;
+                rb.velocity = new Vector2(rb.velocity.x , jumpForce);
+                jumpForce = 0;
+                spriteRenderer.transform.localScale = Vector3.one;
             }
             
         }
@@ -66,19 +96,11 @@ namespace James
             Gizmos.DrawRay(transform.position,-transform.right * 1);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.CompareTag("Ground"))
+            if (other.gameObject.CompareTag("Ground"))
             {
                 playerState = PlayerState.OnGround;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Ground"))
-            {
-                
             }
         }
     }
