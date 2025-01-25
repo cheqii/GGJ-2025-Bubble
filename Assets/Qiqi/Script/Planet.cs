@@ -20,6 +20,7 @@ public class Planet : MonoBehaviour
 
     [SerializeField] private MMF_Player hurtFeedback;
     
+    
     private void Start()
     {
         currentHealth = maxHealth;
@@ -47,7 +48,7 @@ public class Planet : MonoBehaviour
 
         #endregion
 
-        player.PlanetTakeDamage += TakeDamage;
+        //player.PlanetTakeDamage += TakeDamage;
 
     }
 
@@ -61,8 +62,8 @@ public class Planet : MonoBehaviour
         if (player.currentState == MovementController.State.Jumping)
         {
             var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
-            var _jumpDamage = _chargeScript.jumpForce * _chargeScript.JumpCharge;
-            currentHealth -= (int) _jumpDamage;
+            //var _jumpDamage = _chargeScript.jumpForce * _chargeScript.JumpCharge;
+           // currentHealth -= (int) _jumpDamage;
             
             // hurtFeedback.PlayFeedbacks();
         }
