@@ -53,6 +53,7 @@ public class MovementController : MonoBehaviour
                 break;
             case State.Charging:
                 // Debug.Log(currentState);
+                if(Input.GetButton("Jump"))
                 {
                     gameObject.GetComponent<ChargeScript>().Charging();
                 }

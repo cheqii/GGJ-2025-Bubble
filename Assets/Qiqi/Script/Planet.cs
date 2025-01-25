@@ -60,18 +60,33 @@ public class Planet : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void CheckHealthState()
     {
-        
+        switch (currentHealth)
+        {
+            case >= 75:
+                // normal emote
+                planetEmote.ChangeEmote(PlanetEmotions.Happy);
+                break;
+            case >= 50:
+                // nervous emote
+                planetEmote.ChangeEmote(PlanetEmotions.Nervous);
+                break;
+            case >= 25:
+                // sad emote
+                planetEmote.ChangeEmote(PlanetEmotions.Sad);
+                break;
+            case <= 0:
+                // destroy the planet
+                // Destroy(gameObject);
+                break;
+        }
     }
 
     private void TakeDamage()
     {
+        if(currentHealth <= 0) return;
+        
         planetEmote.ChangeEmote(PlanetEmotions.Hurt);
         // if (!player.GetIsGrounded()) return;
         var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
@@ -83,8 +98,10 @@ public class Planet : MonoBehaviour
         _matTween.OnComplete(() =>
         {
             _material.DOColor(Color.white, 0.25f);
-            planetEmote.ChangeEmote(planetEmote.TempEmote);
+            CheckHealthState();
         });
+        
+        // CheckHealthState();
         
         hurtFeedback.PlayFeedbacks();
     }

@@ -25,39 +25,13 @@ public class PlanetEmote : MonoBehaviour
     [SerializeField] private List<SpriteAndEmotion> emotions = new List<SpriteAndEmotion>();
 
     [SerializeField] private PlanetEmotions currentEmote;
-    private PlanetEmotions tempEmote;
-
     public PlanetEmotions CurrentEmote => currentEmote;
-    public PlanetEmotions TempEmote => tempEmote;
 
     #endregion
     
 
-    private void Update()
-    {
-        // just make to test emote TT
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            ChangeEmote(PlanetEmotions.Happy);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            ChangeEmote(PlanetEmotions.Nervous);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            ChangeEmote(PlanetEmotions.Sad);
-        }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            ChangeEmote(PlanetEmotions.Hurt);
-        }
-        
-    }
-
     public void ChangeEmote(PlanetEmotions _emote)
     {
-        tempEmote = currentEmote;
         currentEmote = _emote;
         // need transition or something when change the planet emote
         
