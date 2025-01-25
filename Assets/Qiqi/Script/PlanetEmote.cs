@@ -7,10 +7,10 @@ using UnityEngine.Rendering;
 
 public enum PlanetEmotions
 {
-    Happy = 100,
-    Nervous = 50,
-    Sad = 10,
-    Hurt = 0
+    Happy = 0,
+    Nervous = 1,
+    Sad = 2,
+    Hurt = 3
 }
 
 public class PlanetEmote : MonoBehaviour
@@ -23,7 +23,13 @@ public class PlanetEmote : MonoBehaviour
     [SerializeField] private Animator faceAnimator;
     
     [SerializeField] private List<SpriteAndEmotion> emotions = new List<SpriteAndEmotion>();
-    
+
+    [SerializeField] private PlanetEmotions currentEmote;
+    private PlanetEmotions tempEmote;
+
+    public PlanetEmotions CurrentEmote => currentEmote;
+    public PlanetEmotions TempEmote => tempEmote;
+
     #endregion
     
 
@@ -42,21 +48,23 @@ public class PlanetEmote : MonoBehaviour
         {
             ChangeEmote(PlanetEmotions.Sad);
         }
-
-        /*if (!onPlayer)
+        else if (Input.GetKeyDown(KeyCode.F))
         {
-            transform.Rotate(0, 0, 10 * Time.deltaTime);
-        }*/
+            ChangeEmote(PlanetEmotions.Hurt);
+        }
         
     }
 
     public void ChangeEmote(PlanetEmotions _emote)
     {
+        tempEmote = currentEmote;
+        currentEmote = _emote;
         // need transition or something when change the planet emote
         
         if(!faceSpriteRenderer && !faceAnimator) return;
         faceSpriteRenderer.sprite = emotions[(int) _emote].DefaultFaceSprite;
         faceAnimator.runtimeAnimatorController = emotions[(int) _emote].FaceAnimation;
+        faceAnimator.SetTrigger("Play");
     }
     
 }
