@@ -16,9 +16,10 @@ public class MovementController : MonoBehaviour
 
     public Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider;
+    public GameObject attackRange;
 
     void Start(){
-        playerHalfHeight = collider.bounds.extents.y; 
+        playerHalfHeight = collider.bounds.extents.y;
     }
     
     void Update(){
@@ -28,16 +29,17 @@ public class MovementController : MonoBehaviour
                     gameObject.GetComponent<ChargeScript>().StartCharging();
                     currentState = State.Charging;
                 }
+                else if (Input.GetButtonDown("Fire1")){
+                    currentState = State.Attacking;
+                }
                 
                 break;
             case State.Jumping:
-                Debug.Log(currentState);
                 if (GetIsGrounded()){
                     currentState = State.Grounded;
                 }
                 break;
             case State.Charging:
-                Debug.Log(currentState);
                 if (Input.GetButton("Jump")){
                     gameObject.GetComponent<ChargeScript>().Charging();
                 }
@@ -45,6 +47,10 @@ public class MovementController : MonoBehaviour
                     gameObject.GetComponent<ChargeScript>().Jump();
                     currentState = State.Jumping;
                 }
+                break;
+            case State.Attacking:
+                this.gameObject.transform.GetChild(0).GetComponent<AttackingScript>().Attacking();
+                currentState = State.Grounded;
                 break;
         }
     }
