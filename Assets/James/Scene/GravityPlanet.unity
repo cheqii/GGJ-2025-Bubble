@@ -271,9 +271,9 @@ GameObject:
   - component: {fileID: 663108750}
   - component: {fileID: 663108751}
   - component: {fileID: 663108752}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,10 +377,7 @@ GameObject:
   - component: {fileID: 784687857}
   - component: {fileID: 784687862}
   - component: {fileID: 784687861}
-  - component: {fileID: 784687864}
-  - component: {fileID: 784687865}
-  - component: {fileID: 784687866}
-  - component: {fileID: 784687859}
+  - component: {fileID: 784687863}
   m_Layer: 7
   m_Name: TestUnit
   m_TagString: Player
@@ -458,21 +455,6 @@ Transform:
   - {fileID: 1415441700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &784687859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784687856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f258ccf7844ed7811b12a0556ede8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onGround: 0
-  currentPlanet: {fileID: 0}
-  rotateToCenter: 1
 --- !u!50 &784687861
 Rigidbody2D:
   serializedVersion: 4
@@ -535,7 +517,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &784687864
+--- !u!114 &784687863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -544,44 +526,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 784687856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4165269f08f8ec750880a485f49ad5ed, type: 3}
+  m_Script: {fileID: 11500000, guid: e0791f66a1a546f44a15e797b5cc9901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  rb: {fileID: 784687861}
-  collider: {fileID: 784687862}
---- !u!114 &784687865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784687856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b3efbbe68a1a0bd2ad9caf581318fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementController: {fileID: 784687864}
-  gravity: -9.81
-  jumpForce: 5
---- !u!114 &784687866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784687856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc98912b595ca335c8f17bbd644db9ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementController: {fileID: 784687864}
-  spriterRenderer: {fileID: 784687857}
-  startJumpForce: 2
+  playerState: 0
+  jumpSide: 0
+  chargeTime: 1
+  minJumpForce: 5
   maxJumpForce: 10
-  jumpCharge: 0
+  scaleChange: {x: 0, y: -0.01, z: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!1001 &1014127092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -590,6 +544,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2383919561503833793, guid: aa90aa002b9698c448c3c6879e97e903, type: 3}
+      propertyPath: m_Constraints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3707625067552849746, guid: aa90aa002b9698c448c3c6879e97e903, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -800,7 +758,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1786455983}
-  - component: {fileID: 1786455984}
   m_Layer: 0
   m_Name: Collder
   m_TagString: Untagged
@@ -823,41 +780,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1961845397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1786455984
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786455982}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.04
 --- !u!1 &1856281122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1961845397}
   - component: {fileID: 1961845398}
+  - component: {fileID: 1961845399}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1163,8 +1086,43 @@ MonoBehaviour:
     m_Bits: 8
   onPlayer: 0
   onGround: 0
-  checkRange: 0.21
+  checkRange: 0.5
   groundCheckRange: 0.17
+--- !u!58 &1961845399
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961845396}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.04
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
