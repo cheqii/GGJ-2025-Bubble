@@ -32,6 +32,7 @@ public class MovementController : MonoBehaviour
     
     void Update(){
         
+        
         Debug.DrawRay(transform.position, Vector3.down * (playerHalfHeight + 1f), Color.cyan);
         
         switch (currentState){
@@ -52,16 +53,12 @@ public class MovementController : MonoBehaviour
                 break;
             case State.Charging:
                 // Debug.Log(currentState);
-                if (Input.GetButton("Jump"))
+                if(Input.GetButton("Jump"))
                 {
                     gameObject.GetComponent<ChargeScript>().Charging();
                 }
-                if (Input.GetButtonUp("Jump")){
-                    // gameObject.GetComponent<ChargeScript>().Jump();
-                    // currentState = State.Jumping;
-                    //
-                    // // rotate planet after jump
-                    // RotatePlanet?.Invoke();
+                if (Input.GetButtonUp("Jump"))
+                {
                     if(isJumping) return;
                     StartCoroutine(JumpDelay());
                 }
@@ -83,7 +80,7 @@ public class MovementController : MonoBehaviour
         // rotate planet after jump
         RotatePlanet?.Invoke();
         isJumping = true;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(2f);
         isJumping = false;
     }
     

@@ -1,32 +1,37 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class Planet : MonoBehaviour
 {
+    #region -Planet Status-
+    
     [Header("Planet Status")]
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
+
+    #endregion
 
     [Header("Planet Face Sprite")]
     [SerializeField] private GameObject faceSprite;
 
     [Header("Player")]
     [SerializeField] private MovementController player;
-
+    
+    [Header("Planet Core Collider")]
     [SerializeField] private Collider2D planetCentralCol;
     
+    [Header("Feedbacks")]
     [SerializeField] private MMF_Player hurtFeedback;
+    
+    private PlanetEmote planetEmote;
     
     private void Start()
     {
         currentHealth = maxHealth;
 
+        planetEmote = GetComponent<PlanetEmote>();
+        
         #region > planet scale up start transition
 
         var _faceTween = faceSprite.transform.DOScale(3, 1f);
@@ -55,16 +60,37 @@ public class Planet : MonoBehaviour
 
     }
 
-    private void Update()
+    private void CheckHealthState()
     {
-        
+        switch (currentHealth)
+        {
+            case >= 75:
+                // normal emote
+                planetEmote.ChangeEmote(PlanetEmotions.Happy);
+                break;
+            case >= 50:
+                // nervous emote
+                planetEmote.ChangeEmote(PlanetEmotions.Nervous);
+                break;
+            case >= 25:
+                // sad emote
+                planetEmote.ChangeEmote(PlanetEmotions.Sad);
+                break;
+            case <= 0:
+                // destroy the planet
+                // Destroy(gameObject);
+                break;
+        }
     }
 
     private void TakeDamage()
     {
+        if(currentHealth <= 0) return;
+        
+        planetEmote.ChangeEmote(PlanetEmotions.Hurt);
         // if (!player.GetIsGrounded()) return;
         var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
-        var _jumpDamage = _chargeScript.startJumpForce * _chargeScript.JumpCharge;
+        var _jumpDamage = _chargeScript.JumpCharge;
         currentHealth -= (int) _jumpDamage;
             
         Material _material = GetComponent<MeshRenderer>().material;
@@ -72,14 +98,29 @@ public class Planet : MonoBehaviour
         _matTween.OnComplete(() =>
         {
             _material.DOColor(Color.white, 0.25f);
+            CheckHealthState();
         });
         
-        // hurtFeedback.PlayFeedbacks();
+        // CheckHealthState();
+        
+        hurtFeedback.PlayFeedbacks();
     }
     
     private void RotatePlanet()
     {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var _zRotateValue = player.GetComponent<ChargeScript>().JumpCharge;
+        if (mousePosition.x > player.transform.position.x)
+        {
+            // right side
+            _zRotateValue *= 1;
+        }
+        else if (mousePosition.x < player.transform.position.x)
+        {
+            // left side
+            _zRotateValue *= -1;
+        }
+        // var _zRotateValue = player.GetComponent<ChargeScript>().JumpCharge;
         planetCentralCol.isTrigger = false;
         var _rotateTween = transform.DORotate(new Vector3(0, 0, gameObject.transform.localRotation.eulerAngles.z +  _zRotateValue), 0.25f, RotateMode.FastBeyond360);
         _rotateTween.OnComplete(() =>
