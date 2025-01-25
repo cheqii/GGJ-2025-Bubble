@@ -403,6 +403,9 @@ GameObject:
   - component: {fileID: 2018350222}
   - component: {fileID: 2018350223}
   - component: {fileID: 2018350224}
+  - component: {fileID: 2018350226}
+  - component: {fileID: 2018350225}
+  - component: {fileID: 2018350227}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -551,12 +554,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11e390239d29a4e5a15e38884f5e1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2018350222}
+  movementController: {fileID: 2018350226}
+  moveSpeed: 3
+--- !u!114 &2018350225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018350219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3efbbe68a1a0bd2ad9caf581318fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 2018350226}
+  collider: {fileID: 2018350223}
   gravity: -9.81
   jumpForce: 5
-  moveSpeed: 3
-  spriteRenderer: {fileID: 2018350220}
-  collider: {fileID: 2018350223}
+--- !u!114 &2018350226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018350219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4165269f08f8ec750880a485f49ad5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  rb: {fileID: 2018350222}
+--- !u!114 &2018350227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018350219}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc98912b595ca335c8f17bbd644db9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 0}
+  spriterRenderer: {fileID: 0}
+  rb: {fileID: 0}
+  gravity: -9.81
+  jumpForce: 5
+  maxJumpForce: 0
+  jumpCharge: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
