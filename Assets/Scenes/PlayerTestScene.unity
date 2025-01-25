@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 333487873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 3, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -332,7 +332,14 @@ MonoBehaviour:
   - name: Jump
     clip: {fileID: 8300000, guid: 815f29c9e554b6c80ba112a194825744, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
+    isPlayed: 0
+    source: {fileID: 0}
+  - name: Charge
+    clip: {fileID: 8300000, guid: 095beeca172cf9ed885683490dba22c2, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
     source: {fileID: 0}
 --- !u!1 &784945023
 GameObject:

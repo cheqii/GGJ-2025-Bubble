@@ -14,11 +14,20 @@ public class AudioManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            s.isPlayed = false;
         }   
     }
 
     public void Play(string name){
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
+        if (!s.isPlayed){
+            s.source.Play();
+            s.isPlayed = true;
+        }
+    }
+    public void Reset(string name){
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Stop();
+        s.isPlayed = false;
     }
 }

@@ -23,9 +23,9 @@ public class MovementController : MonoBehaviour
     }
     
     void Update(){
-        FindObjectOfType<AudioManager>().Play("Jump");
         switch (currentState){
             case State.Grounded:
+                FindObjectOfType<AudioManager>().Reset("Jump");
                 if (Input.GetButtonDown("Jump")){
                     gameObject.GetComponent<ChargeScript>().StartCharging();
                     currentState = State.Charging;
@@ -42,9 +42,12 @@ public class MovementController : MonoBehaviour
                 break;
             case State.Charging:
                 if (Input.GetButton("Jump")){
+                    FindObjectOfType<AudioManager>().Play("Charge");
                     gameObject.GetComponent<ChargeScript>().Charging();
                 }
                 if (Input.GetButtonUp("Jump")){
+                    FindObjectOfType<AudioManager>().Reset("Charge");
+                    FindObjectOfType<AudioManager>().Play("Jump");
                     gameObject.GetComponent<ChargeScript>().Jump();
                     currentState = State.Jumping;
                 }
