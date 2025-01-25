@@ -30,6 +30,7 @@ namespace James
         public float maxJumpForce = 10f;
         public Vector3 scaleChange = new Vector3(0f, -0.01f, 0f);
         public SpriteRenderer spriteRenderer;
+        public LayerMask groundLayer;
         private float jumpForce;
         
         [Header("HideInspector")]
@@ -87,6 +88,14 @@ namespace James
                 jumpForce = 0;
                 spriteRenderer.transform.localScale = Vector3.one;
             }
+
+            if (playerState == PlayerState.OnJump)
+            {
+                if (GetIsGrounded())
+                {
+                    
+                }
+            }
             
         }
 
@@ -96,13 +105,12 @@ namespace James
             Gizmos.DrawRay(transform.position,-transform.right * 1);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        public bool GetIsGrounded()
         {
-            if (other.gameObject.CompareTag("Ground"))
-            {
-                playerState = PlayerState.OnGround;
-            }
+            // print("check ground = " + (bool) Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, groundLayer));
+            return Physics2D.Raycast(transform.position, Vector2.down, GetComponent<Collider2D>().bounds.extents.y + 1f, groundLayer);
         }
+        
     }
 }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ChargeScript : MonoBehaviour
 {
-    
     public MovementController movementController;
     [SerializeField] private SpriteRenderer spriterRenderer;
     public float startJumpForce = 5f;
@@ -38,5 +37,4 @@ public class ChargeScript : MonoBehaviour
         movementController.rb.velocity = new Vector2(movementController.rb.velocity.x, jumpCharge);
         spriterRenderer.transform.localScale = Vector3.one;
     }
-
 }

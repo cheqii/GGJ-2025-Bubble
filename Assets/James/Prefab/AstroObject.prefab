@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 467490735893193816}
   - component: {fileID: 3162971777881649223}
   - component: {fileID: 524157965280631728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AstroObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4210d151ae36245a09645dede4379f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
