@@ -569,7 +569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 2018350226}
-  collider: {fileID: 2018350223}
   gravity: -9.81
   jumpForce: 5
 --- !u!114 &2018350226
@@ -586,6 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   rb: {fileID: 2018350222}
+  collider: {fileID: 2018350223}
 --- !u!114 &2018350227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,12 +598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc98912b595ca335c8f17bbd644db9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 0}
-  spriterRenderer: {fileID: 0}
-  rb: {fileID: 0}
-  gravity: -9.81
+  movementController: {fileID: 2018350226}
+  spriterRenderer: {fileID: 2018350220}
   jumpForce: 5
-  maxJumpForce: 0
+  maxJumpForce: 20
   jumpCharge: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

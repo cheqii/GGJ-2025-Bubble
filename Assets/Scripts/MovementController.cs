@@ -8,7 +8,8 @@ public class MovementController : MonoBehaviour
     public enum State{
         Grounded,
         Jumping,
-        Charging
+        Charging,
+        Attacking
     }
     
     private float playerHalfHeight;
@@ -24,10 +25,11 @@ public class MovementController : MonoBehaviour
     void Update(){
         switch (currentState){
             case State.Grounded:
-                if (gameObject.GetComponent<JumpScript>().isJumping()){
+                if (Input.GetButtonDown("Jump")){
                     gameObject.GetComponent<ChargeScript>().StartCharging();
                     currentState = State.Charging;
                 }
+                
                 break;
             case State.Jumping:
                 Debug.Log(currentState);
