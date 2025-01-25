@@ -22,11 +22,6 @@ public class PlanetGravity : MonoBehaviour
     private void Update()
     {
         SetAttractedObject();
-        if (!onPlayer)
-        {
-            transform.Rotate(0, 0, 10 * Time.deltaTime);
-        }
-        
     }
 
     private void FixedUpdate()
@@ -43,10 +38,6 @@ public class PlanetGravity : MonoBehaviour
     {
         foreach (Collider2D attractable in attractedObject)
         {
-            if (attractable.GetComponent<TestPlayerMovement>().playerState == PlayerState.OnJump)
-            {
-                return;
-            }
             attractable.GetComponent<Attractable>().Attract(this);
         }
     }
@@ -55,20 +46,5 @@ public class PlanetGravity : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position,gravityRadius);
         Gizmos.DrawRay(transform.position,Vector3.up * 5);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            onPlayer = true;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            onPlayer = false;
-        }
     }
 }

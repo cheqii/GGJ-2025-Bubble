@@ -11,6 +11,7 @@ public class ChargeScript : MonoBehaviour
     public float maxJumpForce;
     private float chargeTime = 0.5f;
     [SerializeField] private float jumpCharge;
+    public float JumpCharge => jumpCharge;
     private Vector3 scaleChange;
     
 

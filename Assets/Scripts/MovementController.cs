@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MovementController : MonoBehaviour
 {
@@ -12,14 +13,18 @@ public class MovementController : MonoBehaviour
         Attacking
     }
     
-    private float playerHalfHeight;
+    [SerializeField] private float playerHalfHeight;
 
     public Rigidbody2D rb;
     [SerializeField] private CircleCollider2D collider;
     public bool onGround;
+    public LayerMask groundLayer;
+
+    public UnityAction PlanetTakeDamage;
 
     void Start(){
         playerHalfHeight = collider.bounds.extents.y; 
+        
     }
     
     void Update(){
@@ -32,26 +37,30 @@ public class MovementController : MonoBehaviour
                 
                 break;
             case State.Jumping:
-                Debug.Log(currentState);
-                if (GetIsGrounded()){
+                // Debug.Log(currentState);
+                if (GetIsGrounded())
+                {
+                    PlanetTakeDamage?.Invoke();
                     currentState = State.Grounded;
                 }
                 break;
             case State.Charging:
-                Debug.Log(currentState);
-                if (Input.GetButton("Jump")){
+                // Debug.Log(currentState);
+                if (Input.GetButton("Jump"))
+                {
                     gameObject.GetComponent<ChargeScript>().Charging();
                 }
                 if (Input.GetButtonUp("Jump")){
                     gameObject.GetComponent<ChargeScript>().Jump();
                     currentState = State.Jumping;
+                    
                 }
                 break;
         }
     }
 
     private bool GetIsGrounded(){
-        return Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, LayerMask.GetMask("Ground"));
+        return Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, groundLayer);
     }
     
     private void OnTriggerEnter2D(Collider2D other)

@@ -16,6 +16,8 @@ public class Attractable : MonoBehaviour
     private Collider2D _collider2D;
     private Rigidbody2D _rigidbody2D;
 
+    public float attractSpeed;
+
     private void Awake()
     {
         _collider2D = GetComponent<Collider2D>();
@@ -36,18 +38,14 @@ public class Attractable : MonoBehaviour
             {
                 RotateToCenter();
             }
-
-            if (onGround)
+            
+            if (_rigidbody2D.velocity != Vector2.zero)
             {
-                if (_rigidbody2D.velocity != Vector2.zero)
-                {
-                    _rigidbody2D.velocity = Vector2.MoveTowards(_rigidbody2D.velocity, Vector2.zero, 10f);
-                }
-                else
-                {
-                    _rigidbody2D.velocity = Vector2.zero;
-                }
-                
+                _rigidbody2D.velocity = Vector2.MoveTowards(_rigidbody2D.velocity, Vector2.zero, 10f);
+            }
+            else
+            {
+                _rigidbody2D.velocity = Vector2.zero;
             }
             
             
@@ -64,19 +62,11 @@ public class Attractable : MonoBehaviour
     public void Attract(PlanetGravity planetGravity)
     {
         Vector2 attractDir = (Vector2)planetGravity.planetTransform.position - _rigidbody2D.position;
-        _rigidbody2D.AddForce(attractDir.normalized * -planetGravity.gravitySize * 100 * Time.fixedDeltaTime);
+        _rigidbody2D.AddForce(attractDir.normalized * -planetGravity.gravitySize * (100 * Time.fixedDeltaTime) * attractSpeed);
         
         if (currentPlanet ==null)
         {
             currentPlanet = planetGravity;
-        }
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Ground"))
-        {
-            onGround = true;
         }
     }
 }

@@ -40,6 +40,7 @@ public class Blob : MonoBehaviour
         {
             referencePoints[i] = new GameObject();
             referencePoints[i].tag = gameObject.tag;
+            referencePoints[i].layer = LayerMask.NameToLayer("Attractable");
             referencePoints[i].transform.parent = transform;
 
             Quaternion rotation =

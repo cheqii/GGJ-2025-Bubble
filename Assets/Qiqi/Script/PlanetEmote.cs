@@ -7,10 +7,10 @@ using UnityEngine.Rendering;
 
 public enum PlanetEmotions
 {
-    Happy = 0,
-    Nervous = 1,
-    Sad = 2,
-    Hurt = 3
+    Happy = 100,
+    Nervous = 50,
+    Sad = 10,
+    Hurt = 0
 }
 
 public class PlanetEmote : MonoBehaviour

@@ -2,15 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Planet : MonoBehaviour
 {
+    [Header("Planet Status")]
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
 
+    [Header("Planet Face Sprite")]
     [SerializeField] private GameObject faceSprite;
-    [SerializeField] private GameObject planetSpriteMockup;
+
+    [Header("Player")]
+    [SerializeField] private MovementController player;
+
+    [SerializeField] private MMF_Player hurtFeedback;
     
     private void Start()
     {
@@ -39,11 +47,24 @@ public class Planet : MonoBehaviour
 
         #endregion
 
+        player.PlanetTakeDamage += TakeDamage;
+
     }
 
     private void Update()
     {
         
     }
-    
+
+    private void TakeDamage()
+    {
+        if (player.currentState == MovementController.State.Jumping)
+        {
+            var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
+            var _jumpDamage = _chargeScript.jumpForce * _chargeScript.JumpCharge;
+            currentHealth -= (int) _jumpDamage;
+            
+            // hurtFeedback.PlayFeedbacks();
+        }
+    }
 }
