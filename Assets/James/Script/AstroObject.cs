@@ -1,10 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+
+public enum AstroObjectType
+{
+    None,
+    MiniAstro,
+    BombAstro,
+    BigAstro
+}
 
 public class AstroObject : MonoBehaviour
 {
+    [SerializeField] private AstroObjectType astroType = AstroObjectType.None;
+    
     public PlanetGravity planet;
     public int maxHealth;
     public int health;
@@ -42,6 +53,10 @@ public class AstroObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerMain"))
         {
+            if (astroType == AstroObjectType.BigAstro)
+            {
+                Camera.main.DOShakePosition(0.5f, 5f);
+            }
             var _planet = other.gameObject.transform.parent.GetComponent<Planet>();
             _planet.TakeDamage(damage);
             Invoke("DeadTime",0.5f);
@@ -53,4 +68,5 @@ public class AstroObject : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    
 }
