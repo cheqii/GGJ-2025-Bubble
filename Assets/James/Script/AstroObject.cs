@@ -1,10 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+
+public enum AstroObjectType
+{
+    None,
+    MiniAstro,
+    BombAstro,
+    BigAstro
+}
 
 public class AstroObject : MonoBehaviour
 {
+    [SerializeField] private AstroObjectType astroType = AstroObjectType.None;
+    
     public PlanetGravity planet;
     public int maxHealth;
     public int health;
@@ -20,19 +31,12 @@ public class AstroObject : MonoBehaviour
     {
         this.planet = planet;
     }
-    private void Update()
-    {
-        /*if (GetComponent<Attractable>().currentPlanet == null)
-        {
-            transform.position += Vector3.down * speed * Time.deltaTime;
-        }*/
-    }
 
     private void DeadTime()
     {
         //Transform projectile = Instantiate(vfx, transform.position, Quaternion.identity);
         //Destroy(projectile, 3f);
-        planet.PlanetTakeDamage(damage);
+        // planet.TakeDamage(damage);
         gameObject.SetActive(false);
     }
 
@@ -49,8 +53,14 @@ public class AstroObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerMain"))
         {
-            //other.gameObject.GetComponent<>()
+            if (astroType == AstroObjectType.BigAstro)
+            {
+                Camera.main.DOShakePosition(0.5f, 5f);
+            }
+            var _planet = other.gameObject.transform.parent.GetComponent<Planet>();
+            _planet.TakeDamage(damage);
             Invoke("DeadTime",0.5f);
+            FindObjectOfType<AudioManager>().Play("Asteroid Drop");
         }
     }
 
@@ -58,4 +68,5 @@ public class AstroObject : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    
 }

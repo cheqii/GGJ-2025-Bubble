@@ -63,6 +63,7 @@ public class AstroSpawner : MonoBehaviour
                     spawnDelayTime += Time.deltaTime;
                     if (spawnDelayTime >= spawnDelay)
                     {
+                        FindObjectOfType<AudioManager>().Play("Asteroid Spawn");
                         PrepareAstro(spawnCost);
                         spawnDelayTime = 0;
                     }

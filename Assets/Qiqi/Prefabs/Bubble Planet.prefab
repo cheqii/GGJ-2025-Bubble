@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 8926433287088507404}
   - component: {fileID: 2139987594089324309}
   - component: {fileID: 427043031862580516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Planet
   m_TagString: PlayerMain
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f3c066e2c735617478ea69daaca57803, type: 2}
+  - {fileID: 2100000, guid: cbf8b05eec25d5b4e8f6e1f299b4c039, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -548,8 +548,8 @@ MonoBehaviour:
   attractLayer:
     serializedVersion: 2
     m_Bits: 128
-  gravitySize: -10
-  gravityRadius: 15
+  gravitySize: -1
+  gravityRadius: 80
   attractedObject: []
   planetTransform: {fileID: 0}
   onPlayer: 0
