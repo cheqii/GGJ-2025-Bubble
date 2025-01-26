@@ -12,6 +12,9 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ENABLEENCHANTED_ON
+  - _ENABLEUVDISTORT_ON
+  - _ENABLEWIGGLE_ON
   - _SHADERFADING_NONE
   - _SHADERSPACE_UV
   - _TEXTURELAYER1SHEETTOGGLE_ON
@@ -52,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e1a5de3649e031f45bbd3d38cde5b194, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -204,7 +207,7 @@ Material:
     - _EnableDirectionalAlphaFade: 0
     - _EnableDirectionalDistortion: 0
     - _EnableDirectionalGlowFade: 0
-    - _EnableEnchanted: 0
+    - _EnableEnchanted: 1
     - _EnableExternalAlpha: 0
     - _EnableFlame: 0
     - _EnableFrozen: 0
@@ -249,23 +252,23 @@ Material:
     - _EnableStrongTint: 0
     - _EnableTextureLayer1: 0
     - _EnableTextureLayer2: 0
-    - _EnableUVDistort: 0
+    - _EnableUVDistort: 1
     - _EnableUVRotate: 0
     - _EnableUVScale: 0
     - _EnableUVScroll: 0
     - _EnableVibrate: 0
-    - _EnableWiggle: 0
+    - _EnableWiggle: 1
     - _EnableWind: 0
     - _EnableWorldTiling: 0
-    - _EnchantedBrightness: 1
-    - _EnchantedContrast: 0.5
-    - _EnchantedFade: 1
+    - _EnchantedBrightness: 1.24
+    - _EnchantedContrast: -0.98
+    - _EnchantedFade: 0.12
     - _EnchantedLerpToggle: 0
     - _EnchantedRainbowDensity: 0.5
     - _EnchantedRainbowSaturation: 0.8
     - _EnchantedRainbowSpeed: 0.5
     - _EnchantedRainbowToggle: 0
-    - _EnchantedReduce: 0
+    - _EnchantedReduce: 0.71
     - _FadingFade: 1
     - _FadingNoiseFactor: 0.2
     - _FadingWidth: 0.3
@@ -466,9 +469,9 @@ Material:
     - _VibrateRotation: 4
     - _WiggleFade: 1
     - _WiggleFixedGroundToggle: 0
-    - _WiggleFrequency: 2
+    - _WiggleFrequency: 0.31
     - _WiggleOffset: 0.02
-    - _WiggleSpeed: 2
+    - _WiggleSpeed: 3.5
     - _WindFlip: 0
     - _WindHighQualityNoise: 0
     - _WindIsParallax: 0
