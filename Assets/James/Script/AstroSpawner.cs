@@ -12,7 +12,9 @@ public enum SpawnState
 [RequireComponent(typeof(AstroPooling))]
 public class AstroSpawner : MonoBehaviour
 {
+    public Planet planet;
     public SpawnState state = SpawnState.OnPrepare;
+    public int astroDamage = 10;
     public int spawnCount;
     public float spawnDelay = 1.5f;
     private float spawnDelayTime;
@@ -52,7 +54,7 @@ public class AstroSpawner : MonoBehaviour
                             bullet.transform.rotation = Quaternion.identity;
                             bullet.SetActive(true);
                         }
-                        bullet.GetComponent<AstroObject>().speed = Random.Range(0.8f, 1.2f);
+                        bullet.GetComponent<AstroObject>().InitializeAstro(planet,Random.Range(2f, 5f),astroDamage);
                         spawnCount -= 1;
                         spawnDelayTime = 0;
                     }

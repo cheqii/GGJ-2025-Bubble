@@ -12,8 +12,6 @@ Material:
   m_Parent: {fileID: 2100000, guid: 787ea5bfc91d3924aadcd86128e4427f, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ENABLEPIXELATE_ON
-  - _ENABLEPIXELOUTLINE_ON
   - _SHADERFADING_NONE
   - _SHADERSPACE_UV
   - _TEXTURELAYER1SHEETTOGGLE_ON
@@ -36,8 +34,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnablePingPongGlow: 0
-    - _EnablePixelOutline: 1
-    - _EnablePixelate: 1
+    - _EnablePixelOutline: 0
+    - _EnablePixelate: 0
     - _EnableSaturation: 0
     - _EnableShadow: 0
     - _EnableShiftHue: 0

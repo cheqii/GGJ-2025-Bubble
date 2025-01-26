@@ -602,6 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201591657}
+  - component: {fileID: 201591658}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -624,6 +625,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201591658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201591656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c98f76fd217d44a9c6658f70464862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet: {fileID: 2077022806}
+  progressText: {fileID: 64556736}
+  progressSlider: {fileID: 1493881128}
 --- !u!1 &317555003
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +908,7 @@ PrefabInstance:
     - target: {fileID: 3125289937206680376, guid: aa90aa002b9698c448c3c6879e97e903, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2098387750}
     - target: {fileID: 3125289937206680376, guid: aa90aa002b9698c448c3c6879e97e903, type: 3}
       propertyPath: hurtFeedback
       value: 
@@ -969,6 +985,7 @@ GameObject:
   - component: {fileID: 674667290}
   - component: {fileID: 674667289}
   - component: {fileID: 674667292}
+  - component: {fileID: 674667293}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1019,7 +1036,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1044,7 +1061,7 @@ Transform:
   m_GameObject: {fileID: 674667288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1094,6 +1111,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &674667293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674667288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6069c869384d014db08aad66e327f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815224858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1839,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2144,7 +2173,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 0.01
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -2368,11 +2397,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edcb3811951209489c23c55dcd4d974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planet: {fileID: 2077022806}
   state: 0
+  astroDamage: 10
   spawnCount: 0
   spawnDelay: 1.5
-  startSpawnPoint: {x: -20, y: 25, z: 0}
-  endSpawnPoint: {x: 20, y: 35, z: 0}
+  startSpawnPoint: {x: -12, y: 25, z: 0}
+  endSpawnPoint: {x: 12, y: 35, z: 0}
 --- !u!114 &1784229599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2895,6 +2926,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2098387748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2077022806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3125289937206680376, guid: aa90aa002b9698c448c3c6879e97e903, type: 3}
+  m_PrefabInstance: {fileID: 533813126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51619c4c8fd2e964aa3076f30ee6d19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2098387742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,7 +2950,7 @@ GameObject:
   - component: {fileID: 2098387746}
   - component: {fileID: 2098387745}
   - component: {fileID: 2098387750}
-  - component: {fileID: 2098387749}
+  - component: {fileID: 2098387751}
   m_Layer: 0
   m_Name: TestUnit
   m_TagString: Player
@@ -3019,9 +3061,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0.16509432, b: 0.16509432, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 400919425, guid: d1ab6c4bba43db94094ef8cdf8534226, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -3048,23 +3090,6 @@ Transform:
   - {fileID: 2001673007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2098387749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098387742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc98912b595ca335c8f17bbd644db9ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementController: {fileID: 2098387750}
-  spriterRenderer: {fileID: 2098387747}
-  startJumpForce: 5
-  maxJumpForce: 7
-  jumpCharge: 0
 --- !u!114 &2098387750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3079,12 +3104,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   playerHalfHeight: 0
-  rb: {fileID: 2098387745}
-  collider: {fileID: 2098387746}
-  isJumping: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 72
+  spriterRenderer: {fileID: 2098387747}
+  startJumpForce: 5
+  maxJumpForce: 7
+  jumpCharge: 0
+--- !u!95 &2098387751
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098387742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50b44eb7ccf5ec5468a2f648215ecd09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -89,8 +89,7 @@ public class Planet : MonoBehaviour
         
         planetEmote.ChangeEmote(PlanetEmotions.Hurt);
         // if (!player.GetIsGrounded()) return;
-        var _chargeScript = player.gameObject.GetComponent<ChargeScript>();
-        var _jumpDamage = _chargeScript.JumpCharge;
+        var _jumpDamage =  player.JumpCharge;
         currentHealth -= (int) _jumpDamage;
             
         Material _material = GetComponent<MeshRenderer>().material;
@@ -109,7 +108,7 @@ public class Planet : MonoBehaviour
     private void RotatePlanet()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var _zRotateValue = player.GetComponent<ChargeScript>().JumpCharge;
+        var _zRotateValue = player.JumpCharge;
         if (mousePosition.x > player.transform.position.x)
         {
             // right side
@@ -127,5 +126,22 @@ public class Planet : MonoBehaviour
         {
             planetCentralCol.isTrigger = true;
         });
+    }
+
+    public void TakeDamageCost(int damage)
+    {
+        currentHealth -= damage;
+        
+        Material _material = GetComponent<MeshRenderer>().material;
+        var _matTween = _material.DOColor(Color.red, 0.25f);
+        _matTween.OnComplete(() =>
+        {
+            _material.DOColor(Color.white, 0.25f);
+            CheckHealthState();
+        });
+        
+        // CheckHealthState();
+        
+        hurtFeedback.PlayFeedbacks();
     }
 }

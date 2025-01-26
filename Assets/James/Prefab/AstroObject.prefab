@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 467490735893193816}
   - component: {fileID: 3162971777881649223}
   - component: {fileID: 524157965280631728}
-  m_Layer: 6
+  - component: {fileID: 2920367438434492790}
+  m_Layer: 7
   m_Name: AstroObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,14 +131,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779026989059625688}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -162,3 +163,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+--- !u!114 &2920367438434492790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779026989059625688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f258ccf7844ed7811b12a0556ede8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGround: 0
+  currentPlanet: {fileID: 0}
+  rotateToCenter: 0
+  attractSpeed: 10

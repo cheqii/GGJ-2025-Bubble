@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlanetJumpRotate : MonoBehaviour
 {
-    public ChargeScript chargeScript;
+    public MovementController chargeScript;
 
     private void Update()
     {

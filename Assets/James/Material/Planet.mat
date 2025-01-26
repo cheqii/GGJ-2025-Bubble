@@ -12,7 +12,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ENABLESHADOW_ON
   - _SHADERFADING_NONE
   - _SHADERSPACE_UV
   - _TEXTURELAYER1SHEETTOGGLE_ON
@@ -242,7 +241,7 @@ Material:
     - _EnableRecolorRGBYCP: 0
     - _EnableSaturation: 0
     - _EnableScreenTiling: 0
-    - _EnableShadow: 1
+    - _EnableShadow: 0
     - _EnableSharpen: 0
     - _EnableShiftHue: 0
     - _EnableShifting: 0
@@ -355,7 +354,7 @@ Material:
     - _PixelPerfectSpace: 0
     - _PixelPerfectUV: 0
     - _PixelateFade: 1
-    - _PixelatePixelDensity: 16
+    - _PixelatePixelDensity: 21.32
     - _PixelatePixelsPerUnit: 100
     - _PixelsPerUnit: 100
     - _PoisonDensity: 3
