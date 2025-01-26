@@ -60,7 +60,7 @@ public class Planet : MonoBehaviour
 
     }
 
-    private void CheckHealthState()
+    public void CheckHealthState()
     {
         switch (currentHealth)
         {
