@@ -7,6 +7,7 @@ public class PlayerShooter : MonoBehaviour
 {
     public int playerDamage = 1;
     public Transform cursorTransform;
+    public Transform shootPoint;
     public GameObject bulletPrefab;
     public LayerMask hitLayer;
 
@@ -17,13 +18,12 @@ public class PlayerShooter : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         cursorTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
 
-        //RaycastHit2D hit = Physics2D.Raycast(cursorTransform.position, cursorTransform.up, 10f,hitLayer);
+       // RaycastHit2D hit = Physics2D.Raycast(cursorTransform.position, cursorTransform.up, 10f,hitLayer);
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject projectile = Instantiate(bulletPrefab, cursorTransform.position, cursorTransform.rotation);
+            GameObject projectile = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             projectile.GetComponent<Rigidbody2D>().velocity = direction.normalized * 100f;
-            //hit.collider.GetComponent<AstroObject>().TakeDamage(playerDamage);
         }
         
     }

@@ -16,6 +16,12 @@ public enum AstroName
      AstroBomb,
      AstroBig,
 }
+
+public enum SpawnSide
+{
+    LeftSide,
+    RightSide,
+}
 [Serializable]
 public class AstroType
 {
@@ -33,6 +39,7 @@ public class AstroSpawner : MonoBehaviour
 {
     [Header("Astro Ref")]
     public PlanetGravity planet;
+    public Animator animator;
     public SpawnState state = SpawnState.OnPrepare;
     public AstroList astroList;
     public List<AstroType> currentAstroList;
@@ -41,7 +48,10 @@ public class AstroSpawner : MonoBehaviour
     public float spawnDelay = 1.5f;
     private float spawnDelayTime;
     [Header("RandomPoint")]
-    public Vector3 randomPoint;
+    public SpawnSide spawnSide = SpawnSide.LeftSide;
+    public Vector3 spawnPoint;
+    public Vector3 leftPoint;
+    public Vector3 rightPoint;
 
     
     
@@ -49,6 +59,18 @@ public class AstroSpawner : MonoBehaviour
     private void SpawnAstro()
     {
         state = SpawnState.OnSpawn;
+        float randomX = Random.Range(0f, 1f);
+        if (randomX < 0.5f)
+        {
+            spawnSide = SpawnSide.LeftSide;
+            animator.SetTrigger("AleartLeft");
+        }
+        else
+        {
+            spawnSide = SpawnSide.RightSide;
+            animator.SetTrigger("AleartRight");
+        }
+        
     }
 
     private void Update()
@@ -63,7 +85,6 @@ public class AstroSpawner : MonoBehaviour
                     spawnDelayTime += Time.deltaTime;
                     if (spawnDelayTime >= spawnDelay)
                     {
-                        FindObjectOfType<AudioManager>().Play("Asteroid Spawn");
                         PrepareAstro(spawnCost);
                         spawnDelayTime = 0;
                     }
@@ -84,7 +105,15 @@ public class AstroSpawner : MonoBehaviour
                 currentAstroList.Add(astroType);
             }
         }
-        Vector2 spawnPoint = new Vector2(randomPoint.x, Random.Range(randomPoint.y, randomPoint.z));
+
+        if (spawnSide == SpawnSide.LeftSide)
+        {
+            spawnPoint = new Vector2(leftPoint.x, Random.Range(leftPoint.y, leftPoint.z));
+        }
+        else
+        {
+            spawnPoint = new Vector2(rightPoint.x, Random.Range(rightPoint.y, rightPoint.z));
+        }
         int randomAstroNumber = Random.Range(0, currentAstroList.Count - 1);
         AstroName astroName = currentAstroList[randomAstroNumber].astroName;
         switch (astroName)
