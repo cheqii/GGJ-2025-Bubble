@@ -2402,8 +2402,8 @@ MonoBehaviour:
   astroDamage: 10
   spawnCount: 0
   spawnDelay: 1.5
-  startSpawnPoint: {x: -12, y: 25, z: 0}
-  endSpawnPoint: {x: 12, y: 35, z: 0}
+  startSpawnPoint: {x: -7, y: 20, z: 0}
+  endSpawnPoint: {x: 7, y: 10, z: 0}
 --- !u!114 &1784229599
 MonoBehaviour:
   m_ObjectHideFlags: 0

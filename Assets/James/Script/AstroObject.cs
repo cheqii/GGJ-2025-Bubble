@@ -5,28 +5,44 @@ using UnityEngine;
 
 public class AstroObject : MonoBehaviour
 {
-    public Planet planet;
-    public float speed;
+    public PlanetGravity planet;
+    public int maxHealth;
+    public int health;
     public int damage;
+    public Transform vfx;
 
-    public void InitializeAstro(Planet planet,float speed,int damage)
+    private void OnEnable()
+    {
+        health = maxHealth;
+    }
+
+    public void InitializeAstro(PlanetGravity planet)
     {
         this.planet = planet;
-        this.speed = speed;
-        this.damage = damage;
     }
     private void Update()
     {
-        if (GetComponent<Attractable>().currentPlanet == null)
+        /*if (GetComponent<Attractable>().currentPlanet == null)
         {
             transform.position += Vector3.down * speed * Time.deltaTime;
-        }
+        }*/
     }
 
     private void DeadTime()
     {
-        planet.TakeDamageCost(damage);
+        //Transform projectile = Instantiate(vfx, transform.position, Quaternion.identity);
+        //Destroy(projectile, 3f);
+        planet.PlanetTakeDamage(damage);
         gameObject.SetActive(false);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -34,7 +50,7 @@ public class AstroObject : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerMain"))
         {
             //other.gameObject.GetComponent<>()
-            Invoke("DeadTime",1.5f);
+            Invoke("DeadTime",0.5f);
         }
     }
 
