@@ -48,7 +48,7 @@ namespace James
 
         private void Update()
         {
-            PlayerJump();
+            //PlayerJump();
         }
 
         private void PlayerJump()

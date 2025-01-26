@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour
     
     void Update()
     {
-        PlayerJump();
+        //PlayerJump();
     }
 
     public bool GetIsGrounded()

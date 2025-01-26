@@ -9,29 +9,45 @@ public enum SpawnState
     OnPrepare,
     OnSpawn,
 }
+
+public enum AstroName
+{
+     AstroNormal,
+     AstroBomb,
+     AstroBig,
+}
+[Serializable]
+public class AstroType
+{
+    public AstroName astroName;
+    public int cost;
+}
+
+[CreateAssetMenu(fileName = "AstroType", menuName = "Astro/Astro Type")]
+public class AstroList : ScriptableObject
+{
+    public List<AstroType> astroList;
+}
 [RequireComponent(typeof(AstroPooling))]
 public class AstroSpawner : MonoBehaviour
 {
-    public Planet planet;
+    [Header("Astro Ref")]
+    public PlanetGravity planet;
     public SpawnState state = SpawnState.OnPrepare;
-    public int astroDamage = 10;
-    public int spawnCount;
+    public AstroList astroList;
+    public List<AstroType> currentAstroList;
+    [Header("Astro Setting")]
+    public int spawnCost = 5;
     public float spawnDelay = 1.5f;
     private float spawnDelayTime;
     [Header("RandomPoint")]
-    public Vector3 startSpawnPoint;
-    public Vector3 endSpawnPoint;
+    public Vector3 randomPoint;
 
-    public void SpawnAstro(int count)
-    {
-        spawnCount = count;
-        state = SpawnState.OnSpawn;
-    }
+    
     
     [ContextMenu("Test Spawn Astro")]
     private void SpawnAstro()
     {
-        spawnCount = 5;
         state = SpawnState.OnSpawn;
     }
 
@@ -42,20 +58,12 @@ public class AstroSpawner : MonoBehaviour
             case SpawnState.OnPrepare:
                 break;
             case SpawnState.OnSpawn:
-                if (spawnCount > 0)
+                if (spawnCost > 0)
                 {
                     spawnDelayTime += Time.deltaTime;
                     if (spawnDelayTime >= spawnDelay)
                     {
-                        Vector3 spawnPoint = new Vector3(Random.Range(startSpawnPoint.x, endSpawnPoint.x), Random.Range(startSpawnPoint.y, endSpawnPoint.y));
-                        GameObject bullet = GetComponent<AstroPooling>().GetPooledObject(); 
-                        if (bullet != null) {
-                            bullet.transform.position = spawnPoint;
-                            bullet.transform.rotation = Quaternion.identity;
-                            bullet.SetActive(true);
-                        }
-                        bullet.GetComponent<AstroObject>().InitializeAstro(planet,Random.Range(2f, 5f),astroDamage);
-                        spawnCount -= 1;
+                        PrepareAstro(spawnCost);
                         spawnDelayTime = 0;
                     }
                 }
@@ -65,5 +73,62 @@ public class AstroSpawner : MonoBehaviour
                 }
                 break;
         }
+    }
+    private void PrepareAstro(int cost)
+    {
+        foreach (AstroType astroType in astroList.astroList)
+        {
+            if (astroType.cost <= cost)
+            {
+                currentAstroList.Add(astroType);
+            }
+        }
+        Vector2 spawnPoint = new Vector2(randomPoint.x, Random.Range(randomPoint.y, randomPoint.z));
+        int randomAstroNumber = Random.Range(0, currentAstroList.Count - 1);
+        AstroName astroName = currentAstroList[randomAstroNumber].astroName;
+        switch (astroName)
+        {
+            case AstroName.AstroNormal:
+            {
+                GameObject bullet = GetComponent<AstroPooling>().GetNormalPooledObject(); 
+                if (bullet != null) {
+                    bullet.transform.position = spawnPoint;
+                    bullet.transform.rotation = Quaternion.identity;
+                    bullet.SetActive(true);
+                }
+                AstroObject astroObject =bullet.GetComponent<AstroObject>();
+                astroObject.InitializeAstro(planet);
+                break;
+            }
+            case AstroName.AstroBomb:
+            {
+                GameObject bullet = GetComponent<AstroPooling>().GetBombPooledObject(); 
+                if (bullet != null) {
+                    bullet.transform.position = spawnPoint;
+                    bullet.transform.rotation = Quaternion.identity;
+                    bullet.SetActive(true);
+                }
+        
+                AstroObject astroObject =bullet.GetComponent<AstroObject>();
+                astroObject.InitializeAstro(planet);
+                break;
+            }
+            case AstroName.AstroBig:
+            {
+                GameObject bullet = GetComponent<AstroPooling>().GetBigPooledObject(); 
+                if (bullet != null) {
+                    bullet.transform.position = spawnPoint;
+                    bullet.transform.rotation = Quaternion.identity;
+                    bullet.SetActive(true);
+                }
+        
+                AstroObject astroObject =bullet.GetComponent<AstroObject>();
+                astroObject.InitializeAstro(planet);
+                break;
+            }
+        }
+        
+        spawnCost -= currentAstroList[randomAstroNumber].cost;
+        currentAstroList.Clear();
     }
 }

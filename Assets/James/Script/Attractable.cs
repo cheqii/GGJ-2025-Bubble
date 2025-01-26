@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Attractable : MonoBehaviour
 {
-    [Header("Ground Check")]
-    public bool onGround = false;
     [Header("Gravity Check")]
     public PlanetGravity currentPlanet;
     public bool rotateToCenter = true;
@@ -38,17 +36,6 @@ public class Attractable : MonoBehaviour
             {
                 RotateToCenter();
             }
-            
-            if (_rigidbody2D.velocity != Vector2.zero)
-            {
-                _rigidbody2D.velocity = Vector2.MoveTowards(_rigidbody2D.velocity, Vector2.zero, 10f);
-            }
-            else
-            {
-                _rigidbody2D.velocity = Vector2.zero;
-            }
-            
-            
         }
     }
 
