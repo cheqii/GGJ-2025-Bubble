@@ -64,12 +64,15 @@ public class ExploreProgression : MonoBehaviour
         
         // Update progress text
         progressText.text = progressSlider.value.ToString("F0") + "%";
-
         // Optional: Reset when complete
         if (_progress >= 1f)
         {
+            FindObjectOfType<AudioManager>().PlayOnce("Complete");
             Debug.Log("Progress complete!");
             // Finish Stage
+        }
+        else{
+            FindObjectOfType<AudioManager>().Play("Progress");
         }
     }
     

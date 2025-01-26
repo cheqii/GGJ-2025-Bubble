@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - PlayerMain
+  - Missile
+  - Target
+  - Astro
   layers:
   - Default
   - TransparentFX
@@ -39,9 +43,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: BG
-    uniqueID: 2896074165
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
