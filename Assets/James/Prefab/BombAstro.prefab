@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPlanet: {fileID: 0}
   rotateToCenter: 0
-  attractSpeed: 0.5
+  attractSpeed: 1
 --- !u!114 &1197558386145019829
 MonoBehaviour:
   m_ObjectHideFlags: 0

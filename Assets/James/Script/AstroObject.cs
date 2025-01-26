@@ -64,9 +64,9 @@ public class AstroObject : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
+    /*private void OnBecameInvisible()
     {
         gameObject.SetActive(false);
-    }
+    }*/
     
 }

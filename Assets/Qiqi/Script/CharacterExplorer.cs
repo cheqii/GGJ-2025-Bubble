@@ -19,6 +19,10 @@ public class CharacterExplorer : MonoBehaviour
     
     public void MoveCharacter(float progress)
     {
+        if (character == null)
+        {
+            character = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         // Calculate the angle (0 to 360 degrees) based on progress
         float angle = Mathf.Lerp(0f, 360f, progress);
 

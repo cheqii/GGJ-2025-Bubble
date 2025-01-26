@@ -26,7 +26,8 @@ public class ExploreProgression : MonoBehaviour
 
     [SerializeField] private CharacterExplorer character;
 
-    [SerializeField] private MovementController characterMovement;
+    [SerializeField] private Transform characterMovement;
+    private MovementController movementController;
 
     void Start()
     {
@@ -47,7 +48,12 @@ public class ExploreProgression : MonoBehaviour
 
     void Update()
     {
-        if(!characterMovement.GetIsGrounded()) return;
+        if (characterMovement == null)
+        {
+            characterMovement = GameObject.FindGameObjectWithTag("Player").transform;
+            movementController = characterMovement.GetComponent<MovementController>();
+        }
+        if(!movementController.GetIsGrounded()) return;
         // Adjust the effective duration based on the condition
         effectiveDuration = totalDuration / (condition ? slowSpeed : normalSpeed);
 

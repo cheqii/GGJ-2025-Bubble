@@ -1,6 +1,7 @@
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Planet : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Planet : MonoBehaviour
     [SerializeField] private MMF_Player hurtFeedback;
     
     private PlanetEmote planetEmote;
+
+    public GameObject gameoverPanel;
+    public GameObject uiporgress;
     
     private void Start()
     {
@@ -79,6 +83,8 @@ public class Planet : MonoBehaviour
             case <= 0:
                 // destroy the planet
                 // Destroy(gameObject);
+                gameoverPanel.SetActive(true);
+                uiporgress.SetActive(false);
                 break;
         }
     }
@@ -129,5 +135,10 @@ public class Planet : MonoBehaviour
         });
         
         hurtFeedback.PlayFeedbacks();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("PlanetTakeDamage");
     }
 }
