@@ -128,8 +128,6 @@ public class Planet : MonoBehaviour
             CheckHealthState();
         });
         
-        // CheckHealthState();
-        
         hurtFeedback.PlayFeedbacks();
     }
 }
