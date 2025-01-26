@@ -89,14 +89,6 @@ public class Planet : MonoBehaviour
         
         planetEmote.ChangeEmote(PlanetEmotions.Hurt);
         currentHealth -= _damage;
-            
-        Material _material = GetComponent<MeshRenderer>().material;
-        var _matTween = _material.DOColor(Color.red, 0.25f);
-        _matTween.OnComplete(() =>
-        {
-            _material.DOColor(Color.white, 0.25f);
-            CheckHealthState();
-        });
         
         hurtFeedback.PlayFeedbacks();
     }
