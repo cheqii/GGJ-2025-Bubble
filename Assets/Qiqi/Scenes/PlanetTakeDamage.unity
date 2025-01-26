@@ -3259,6 +3259,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &423688331090492880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5505831609355539526, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+  m_PrefabInstance: {fileID: 4227360973205086685}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8718149058079955883}
+  - component: {fileID: 7090808973856055998}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1001 &4227360973205086685
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505831609355539526, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
 --- !u!1001 &5082714703306362949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3336,10 +3410,102 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7072f3888d5d9940a0ef3f42327c428, type: 3}
+--- !u!114 &7090808973856055998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 2527034004793624329, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+  m_PrefabInstance: {fileID: 4227360973205086685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423688331090492880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec482d355e25a312b5c7a6a02688309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 395ad9e415d92c93294aad19754c5ae4, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 5fbda40d34b70fc559f4d25103e613da, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Charge
+    clip: {fileID: 8300000, guid: 095beeca172cf9ed885683490dba22c2, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 10d5e508e9abd3df1ba1b0ec68b065ee, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Drop
+    clip: {fileID: 8300000, guid: dd6eb590d8270a71493ddff5b058aec8, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Asteroid Spawn
+    clip: {fileID: 8300000, guid: 6c5a87a6d198b4e2bb986ae71a677130, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Asteroid Drop
+    clip: {fileID: 8300000, guid: aef244f49e2d3d999bfa53b86b9efe66, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Complete
+    clip: {fileID: 8300000, guid: d2d7cec821c6da8ed802d02222c7c53a, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Progress
+    clip: {fileID: 8300000, guid: ba68e6115a1ff3dd4a5b9583a51ac832, type: 3}
+    volume: 0.1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &8718149058079955883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1897908167209472050, guid: 9c319ae109cbf1c32bf3d4e45710c240, type: 3}
+  m_PrefabInstance: {fileID: 4227360973205086685}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423688331090492880}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 4227360973205086685}
   - {fileID: 69442735}
   - {fileID: 1856281126}
   - {fileID: 784687858}

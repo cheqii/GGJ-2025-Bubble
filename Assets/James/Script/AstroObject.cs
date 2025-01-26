@@ -45,6 +45,7 @@ public class AstroObject : MonoBehaviour
             var _planet = other.gameObject.transform.parent.GetComponent<Planet>();
             _planet.TakeDamage(damage);
             Invoke("DeadTime",0.5f);
+            FindObjectOfType<AudioManager>().Play("Asteroid Drop");
         }
     }
 

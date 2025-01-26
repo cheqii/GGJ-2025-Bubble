@@ -80,3 +80,31 @@ MonoBehaviour:
     isPlayed: 0
     loop: 0
     source: {fileID: 0}
+  - name: Asteroid Spawn
+    clip: {fileID: 8300000, guid: 6c5a87a6d198b4e2bb986ae71a677130, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Asteroid Drop
+    clip: {fileID: 8300000, guid: aef244f49e2d3d999bfa53b86b9efe66, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Complete
+    clip: {fileID: 8300000, guid: d2d7cec821c6da8ed802d02222c7c53a, type: 3}
+    volume: 1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Progress
+    clip: {fileID: 8300000, guid: ba68e6115a1ff3dd4a5b9583a51ac832, type: 3}
+    volume: 0.1
+    pitch: 1
+    isPlayed: 0
+    loop: 0
+    source: {fileID: 0}
