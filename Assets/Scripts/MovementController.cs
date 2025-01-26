@@ -36,16 +36,13 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         scaleChange = new Vector3(0f, -0.01f, 0f);
     }
-    
-    
-    void Update()
-    {
-        PlayerJump();
-    }
 
     public bool GetIsGrounded()
     {
-        // print("check ground = " + (bool) Physics2D.Raycast(transform.position, Vector2.down, playerHalfHeight + 0.1f, groundLayer));
+        if (Physics2D.OverlapCircle(transform.position, checkRange, groundLayer))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
         return Physics2D.OverlapCircle(transform.position, checkRange, groundLayer);
     }
 
