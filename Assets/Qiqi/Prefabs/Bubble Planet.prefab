@@ -436,7 +436,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f3c066e2c735617478ea69daaca57803, type: 2}
+  - {fileID: 2100000, guid: 9b982804c11d3b349baeb5a23276ca49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -548,8 +548,8 @@ MonoBehaviour:
   attractLayer:
     serializedVersion: 2
     m_Bits: 128
-  gravitySize: -10
-  gravityRadius: 15
+  gravitySize: -1
+  gravityRadius: 80
   attractedObject: []
   planetTransform: {fileID: 0}
   onPlayer: 0

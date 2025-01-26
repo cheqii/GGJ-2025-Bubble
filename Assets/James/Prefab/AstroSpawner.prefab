@@ -67,9 +67,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
-  state: 0
+  state: 1
   astroList: {fileID: 11400000, guid: 0f5f42bdc6f931e4688767ab5999f28f, type: 2}
   currentAstroList: []
   spawnCost: 5
   spawnDelay: 1.5
-  randomPoint: {x: -12, y: 5, z: -5}
+  randomPoint: {x: -50, y: 5, z: -5}

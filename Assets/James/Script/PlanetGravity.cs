@@ -7,10 +7,6 @@ using UnityEngine;
 
 public class PlanetGravity : MonoBehaviour
 {
-    [Header("Planet Stats")] 
-    public float maxPlanetHealth;
-    public float currentPlanetHealth;
-    
     [Header("Gravity Settings")]
     public LayerMask attractLayer;
     public float gravitySize = -10f;
@@ -51,14 +47,5 @@ public class PlanetGravity : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position,gravityRadius);
         Gizmos.DrawRay(transform.position,Vector3.up * 5);
-    }
-
-    public void PlanetTakeDamage(float damage)
-    {
-        currentPlanetHealth -= damage;
-        if (currentPlanetHealth <= 0)
-        {
-            Debug.Log("Game Over");
-        }
     }
 }
