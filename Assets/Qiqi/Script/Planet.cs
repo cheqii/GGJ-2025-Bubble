@@ -55,7 +55,7 @@ public class Planet : MonoBehaviour
 
         #endregion
 
-        player.PlanetTakeDamage += TakeDamage;
+        // player.PlanetTakeDamage += TakeDamage;
         player.RotatePlanet += RotatePlanet;
 
     }
@@ -83,14 +83,12 @@ public class Planet : MonoBehaviour
         }
     }
 
-    private void TakeDamage()
+    public void TakeDamage(int _damage)
     {
         if(currentHealth <= 0) return;
         
         planetEmote.ChangeEmote(PlanetEmotions.Hurt);
-        // if (!player.GetIsGrounded()) return;
-        var _jumpDamage =  player.JumpCharge;
-        currentHealth -= (int) _jumpDamage;
+        currentHealth -= _damage;
             
         Material _material = GetComponent<MeshRenderer>().material;
         var _matTween = _material.DOColor(Color.red, 0.25f);
@@ -99,8 +97,6 @@ public class Planet : MonoBehaviour
             _material.DOColor(Color.white, 0.25f);
             CheckHealthState();
         });
-        
-        // CheckHealthState();
         
         hurtFeedback.PlayFeedbacks();
     }

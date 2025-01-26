@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3162971777881649223}
   - component: {fileID: 524157965280631728}
   - component: {fileID: 2920367438434492790}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: BigAstro
   m_TagString: Untagged
   m_Icon: {fileID: 0}

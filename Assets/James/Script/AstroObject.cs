@@ -20,19 +20,12 @@ public class AstroObject : MonoBehaviour
     {
         this.planet = planet;
     }
-    private void Update()
-    {
-        /*if (GetComponent<Attractable>().currentPlanet == null)
-        {
-            transform.position += Vector3.down * speed * Time.deltaTime;
-        }*/
-    }
 
     private void DeadTime()
     {
         //Transform projectile = Instantiate(vfx, transform.position, Quaternion.identity);
         //Destroy(projectile, 3f);
-        planet.PlanetTakeDamage(damage);
+        // planet.TakeDamage(damage);
         gameObject.SetActive(false);
     }
 
@@ -49,7 +42,8 @@ public class AstroObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerMain"))
         {
-            //other.gameObject.GetComponent<>()
+            var _planet = other.gameObject.transform.parent.GetComponent<Planet>();
+            _planet.TakeDamage(damage);
             Invoke("DeadTime",0.5f);
         }
     }
